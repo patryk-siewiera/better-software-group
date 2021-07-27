@@ -1,7 +1,17 @@
 import "./App.css";
 
 function App() {
-	return <div className="App">app init</div>;
+	function handleLogin() {
+		// history.push('/home')
+	}
+	return (
+		<div className="App">
+			<form action="" onSubmit={handleLogin}>
+				<input type="text" />
+				<input type="text" />
+			</form>
+		</div>
+	);
 }
 
 export default App;
