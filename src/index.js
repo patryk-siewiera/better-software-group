@@ -10,7 +10,14 @@ import {
 	useHistory,
 } from "react-router-dom";
 
-const App = React.lazy(() => import("./App"));
+const App = React.lazy(() => {
+	return import("./App").then(
+		(App) =>
+			new Promise((res) => {
+				setTimeout(res, 1000, App);
+			})
+	);
+});
 
 ReactDOM.render(
 	<React.StrictMode>
