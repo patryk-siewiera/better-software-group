@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import Player from "./player";
@@ -21,7 +21,9 @@ const App = React.lazy(() => {
 
 ReactDOM.render(
 	<React.StrictMode>
-		<React.Suspense fallback={<span>Splash Screen</span>}>
+		<React.Suspense
+			fallback={<div className="splash">Splash Screen (timeout 1 s)</div>}
+		>
 			<Router>
 				<App />
 			</Router>
