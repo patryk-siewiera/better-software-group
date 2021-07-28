@@ -22,7 +22,7 @@ const App = React.lazy(() => {
 function fallbackTimeout() {
 	return (
 		<>
-			<div className="splash">Splash Screen (timeout 1s)</div>
+			<div className="splash">Loading... (timeout 1s)</div>
 		</>
 	);
 }

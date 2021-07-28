@@ -19,7 +19,7 @@ export default function Player() {
 					// backgroundColor: "lightgray"
 				}}
 			>
-				<Playlist />
+				{/* <Playlist /> */}
 			</div>
 			<div className="player">
 				{/*v == 0 &&*/ <video controls={true} />}

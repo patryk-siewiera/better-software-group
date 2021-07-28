@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import Player from "./player";
 import Login from "./login";
+import Playlist from "./playlist";
 
 function App() {
 	const history = useHistory();
@@ -17,12 +18,15 @@ function App() {
 				<Login
 					onLogin={(token) => {
 						setJwtToken(token);
-						history.push("/player");
+						history.push("/playlist");
 					}}
 				/>
 			</Route>
+			<Route exact path="/playlist">
+				<Playlist goBack={() => history.push("./")} />
+			</Route>
 			<Route exact path="/player">
-				<Player jwtToken={jwtToken} />
+				<Player />
 			</Route>
 		</Switch>
 	);
