@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./App";
 import Player from "./player";
 import {
 	BrowserRouter as Router,
@@ -11,12 +10,15 @@ import {
 	useHistory,
 } from "react-router-dom";
 
+const App = React.lazy(() => import("./App"));
+
 ReactDOM.render(
 	<React.StrictMode>
-		<Router>
-			<App />
-		</Router>
-		{/* <Player /> */}
+		<React.Suspense fallback={<span>Splash Screen</span>}>
+			<Router>
+				<App />
+			</Router>
+		</React.Suspense>
 	</React.StrictMode>,
 	document.getElementById("root")
 );
