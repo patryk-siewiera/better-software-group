@@ -1,10 +1,15 @@
 import React from "react";
 import { useHistory } from "react-router";
+import "./playlist.css";
 
 export default function Playlist({ goBack }) {
 	return (
 		<div>
-			<button onClick={goBack}>Go back</button>
+			<div className="buttonBack">
+				<button onClick={goBack} className="buttonGoBack">
+					Go back
+				</button>
+			</div>
 			<div
 				style={{
 					display: "flex",

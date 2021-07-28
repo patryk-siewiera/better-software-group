@@ -19,12 +19,11 @@ export default function Login({ token, setJwtToken, onLogin }) {
 			<form action="" onSubmit={handleLogin}>
 				<div className="groupInput">
 					<div className="titleInput">Login</div>
-					<input type="text" className="inputText" />
+					<input type="text" required className="inputText" />
 				</div>
 				<div className="groupInput">
 					<div className="titleInput">Password</div>
-
-					<input type="text" className="inputText" />
+					<input type="password" required className="inputText" />
 				</div>
 				<button type="submit" className="buttonSubmit">
 					Login
