@@ -7,3 +7,8 @@
 .buttonBack {
 	text-align: center;
 }
+
+.getMediaList {
+	padding: 40px;
+	border-style: solid;
+}

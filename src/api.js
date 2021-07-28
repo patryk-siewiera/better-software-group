@@ -41,16 +41,20 @@ export function getMediaList(data, token) {
 	// "IncludeMedia": false,
 	// "PageNumber": 1,
 	// "PageSize": 15}
-	fetch(BASE_URL + "/Media/GetMediaList", {
+	return fetch(BASE_URL + "Media/GetMediaList", {
 		method: "POST",
 		headers: {
+			accept: "application/json",
 			"Content-Type": "application/json",
 			Authorization: "Bearer " + token,
 		},
-		body: data,
+		body: JSON.stringify(data),
 	})
 		.then((response) => {
-			return console.log(response);
+			return response.json().then((response) => {
+				console.log(response);
+				return response;
+			});
 		})
 		.catch((err) => {
 			console.error(err);

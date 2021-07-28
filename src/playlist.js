@@ -1,8 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import "./playlist.css";
+import { getMediaList } from "./api";
 
-export default function Playlist({ goBack }) {
+const bodyMedia = { MediaListId: 2, PageNumber: 1, PageSize: 15 };
+
+export default function Playlist({ goBack, jwtToken }) {
+	const [mediaList, setMediaList] = useState("");
+
+	function getMedia(bodyMedia, jwtToken) {
+		const dataMedia = getMediaList(bodyMedia, jwtToken);
+		dataMedia.then((res) => {
+			setMediaList(res);
+		});
+	}
+
+	useEffect(() => {
+		getMedia(bodyMedia, jwtToken);
+	}, []);
+
+	useEffect(() => {
+		if (jwtToken === "") {
+			goBack();
+		}
+	}, [jwtToken]);
+
 	return (
 		<div>
 			<div className="buttonBack">
@@ -10,48 +32,9 @@ export default function Playlist({ goBack }) {
 					Go back
 				</button>
 			</div>
-			<div
-				style={{
-					display: "flex",
-					// maxHeight: "100%",
-					overflow: "auto",
-				}}
-			>
-				<div
-					style={{
-						maxHeight: "300px",
-						minHeight: "200px",
-						// backgroundColor: "crimson",
-						overflow: "auto",
-					}}
-				>
-					<ol>
-						{[/*api.getMediaList() ||*/ ...Array(15)].map((e) => (
-							<li>
-								<div>
-									<img src="" alt="cover 19:6" />
-									<span>title</span>
-								</div>
-							</li>
-						))}
-					</ol>
-				</div>
-				{1 && (
-					<div
-						style={{
-							minHeight: "200px",
-							maxHeight: "300px",
-							minWidth: "250px",
-							overflow: "auto",
-						}}
-					>
-						<ol>
-							{[...Array(15)].map((e) => (
-								<li>track name, length in min:sec</li>
-							))}
-						</ol>
-					</div>
-				)}
+			<div className="getMediaList">
+				{/* if not && replacer */}
+				{JSON.stringify(mediaList, null, 2)}
 			</div>
 		</div>
 	);

@@ -23,10 +23,13 @@ function App() {
 				/>
 			</Route>
 			<Route exact path="/playlist">
-				<Playlist goBack={() => history.push("./")} />
+				<Playlist
+					goBack={() => history.push("./")}
+					jwtToken={jwtToken}
+				/>
 			</Route>
 			<Route exact path="/player">
-				<Player />
+				<Player jwtToken={jwtToken} />
 			</Route>
 		</Switch>
 	);
