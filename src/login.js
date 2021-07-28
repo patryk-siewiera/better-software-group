@@ -8,7 +8,6 @@ export default function Login({ token, setJwtToken, onLogin }) {
 	}
 
 	function handleLogin(ev) {
-		// TODO describe what this part of code do
 		getAndStoreToken();
 		ev.preventDefault();
 		ev.stopPropagation();
@@ -25,7 +24,7 @@ export default function Login({ token, setJwtToken, onLogin }) {
 				<div className="groupInput">
 					<div className="titleInput">Password</div>
 
-					<input type="text" required className="inputText" />
+					<input type="password" required className="inputText" />
 				</div>
 				<button type="submit" className="buttonSubmit">
 					Login

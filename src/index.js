@@ -1,4 +1,4 @@
-import React, { lazy } from "react";
+import React, { useState, useEffect, lazy } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import Player from "./player";
@@ -19,15 +19,25 @@ const App = React.lazy(() => {
 	);
 });
 
-ReactDOM.render(
-	<React.StrictMode>
-		<React.Suspense
-			fallback={<div className="splash">Splash Screen (timeout 1 s)</div>}
-		>
-			<Router>
-				<App />
-			</Router>
-		</React.Suspense>
-	</React.StrictMode>,
-	document.getElementById("root")
-);
+function fallbackTimeout() {
+	return (
+		<>
+			<div className="splash">Splash Screen (timeout 1s)</div>
+		</>
+	);
+}
+
+function MainApp() {
+	ReactDOM.render(
+		<React.StrictMode>
+			<React.Suspense fallback={fallbackTimeout()}>
+				<Router>
+					<App />
+				</Router>
+			</React.Suspense>
+		</React.StrictMode>,
+		document.getElementById("root")
+	);
+}
+
+MainApp();

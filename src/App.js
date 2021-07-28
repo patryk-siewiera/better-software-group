@@ -1,11 +1,8 @@
-import "./App.css";
-import { getLoginTokenAnonymous } from "./api";
 import { useState, useEffect } from "react";
 import {
 	BrowserRouter as Router,
 	Switch,
 	Route,
-	Link,
 	useHistory,
 } from "react-router-dom";
 import Player from "./player";
@@ -25,7 +22,7 @@ function App() {
 				/>
 			</Route>
 			<Route exact path="/player">
-				<Player />
+				<Player jwtToken={jwtToken} />
 			</Route>
 		</Switch>
 	);
