@@ -1,0 +1,45 @@
+.loginWindow {
+	text-align: center;
+	padding: 4rem;
+	border-style: solid;
+	max-width: 15rem;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20px;
+	border-radius: 60px;
+	border-color: #ccc;
+}
+
+.login .password {
+	margin: 50px;
+}
+
+.buttonSubmit {
+	margin: 10px 0px;
+	width: 150px;
+	height: 50px;
+}
+
+.topText {
+	font-size: larger;
+	font-weight: bold;
+}
+
+.bottomText {
+	font-size: small;
+	color: #aaa;
+	font-style: italic;
+	margin-top: 20px;
+}
+
+.inputText {
+	width: 180px;
+}
+
+.groupInput {
+	margin: 50px 0px;
+}
+
+.titleInput {
+	margin: 10px 0px;
+}
