@@ -28,6 +28,8 @@ export default function Player() {
                 */}
 				{/* Load mpd file from API, then inject to react-player
 				https://github.com/cookpete/react-player/search?q=mpd */}
+
+				{/* <ReactPlayer url="https://www.youtube.com/watch?v=ysz5S6PUM-U" /> */}
 			</div>
 		</div>
 	);

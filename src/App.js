@@ -1,16 +1,33 @@
 import "./App.css";
+import { getLoginTokenAnonymous } from "./api";
+import { useState, useEffect } from "react";
+import {
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	Link,
+	useHistory,
+} from "react-router-dom";
+import Player from "./player";
+import Login from "./login";
 
 function App() {
-	function handleLogin() {
-		// history.push('/home')
-	}
+	const history = useHistory();
+	const [jwtToken, setJwtToken] = useState("");
 	return (
-		<div className="App">
-			<form action="" onSubmit={handleLogin}>
-				<input type="text" />
-				<input type="text" />
-			</form>
-		</div>
+		<Switch>
+			<Route exact path="/">
+				<Login
+					onLogin={(token) => {
+						setJwtToken(token);
+						history.push("/player");
+					}}
+				/>
+			</Route>
+			<Route exact path="/player">
+				<Player />
+			</Route>
+		</Switch>
 	);
 }
 

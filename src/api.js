@@ -1,14 +1,19 @@
 const BASE_URL = "https://thebetter.bsgroup.eu/";
 
 export function getLoginTokenAnonymous() {
-	fetch(BASE_URL + "Authorization/SignIn", {
+	return fetch(BASE_URL + "Authorization/SignIn", {
 		method: "POST",
-		headers: {},
+		headers: {
+			accept: "application/json",
+			"Content-Type": "application/json",
+		},
 		body: "{}",
 	})
 		.then((response) => {
-			// AuthorizationToken.Token
-			return response.json();
+			// jwt = AuthorizationToken.Token
+			return response
+				.json()
+				.then((res) => res["AuthorizationToken"]["Token"]);
 		})
 		.catch((err) => {
 			console.error(err);
@@ -55,6 +60,8 @@ export function getMediaList(data, token) {
 export function getPlayer(data, token) {
 	// {"MediaId": 15,
 	// "StreamType": "TRIAL"}
+
+	// body :  {}
 	fetch("https://thebetter.bsgroup.eu/Media/GetMediaPlayInfo", {
 		method: "POST",
 		headers: {
