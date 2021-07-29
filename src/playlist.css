@@ -24,4 +24,5 @@
 .oneMovie:hover {
 	color: green;
 	font-weight: bold;
+	cursor: pointer;
 }
