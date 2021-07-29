@@ -52,6 +52,7 @@ export function getMediaList(data, token) {
 	})
 		.then((response) => {
 			return response.json().then((response) => {
+				console.log("POST Media/GetMediaList response:");
 				console.log(response);
 				return response;
 			});

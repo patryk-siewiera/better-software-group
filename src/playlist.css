@@ -11,4 +11,17 @@
 .getMediaList {
 	padding: 40px;
 	border-style: solid;
+	margin: 20px;
+}
+
+.oneMovie {
+	color: red;
+	border-style: dotted;
+	padding: 40px;
+	margin: 20px;
+}
+
+.oneMovie:hover {
+	color: green;
+	font-weight: bold;
 }
