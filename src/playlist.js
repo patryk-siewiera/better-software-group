@@ -6,22 +6,25 @@ import { getMediaList } from "./api";
 const bodyMedia = { MediaListId: 2, PageNumber: 1, PageSize: 15 };
 
 export default function Playlist({ goBack, jwtToken }) {
-	const [mediaList, setMediaList] = useState("");
+	const [mediaList, setMediaList] = useState("Loading Media List...");
 
 	function getMedia(bodyMedia, jwtToken) {
 		const dataMedia = getMediaList(bodyMedia, jwtToken);
-		dataMedia.then((res) => {
-			setMediaList(res);
-		});
+		return dataMedia;
 	}
 
-	useEffect(() => {
-		getMedia(bodyMedia, jwtToken);
-	}, []);
+	function iterateObject(obj) {
+		return <div>{JSON.stringify(obj.Entities[0])}</div>;
+	}
 
 	useEffect(() => {
 		if (jwtToken === "") {
 			goBack();
+		} else {
+			getMedia(bodyMedia, jwtToken).then((res) => {
+				console.log(res);
+				setMediaList(res);
+			});
 		}
 	}, [jwtToken]);
 
@@ -32,10 +35,7 @@ export default function Playlist({ goBack, jwtToken }) {
 					Go back
 				</button>
 			</div>
-			<div className="getMediaList">
-				{/* if not && replacer */}
-				{JSON.stringify(mediaList, null, 2)}
-			</div>
+			<div className="getMediaList">{JSON.stringify(mediaList)}</div>
 		</div>
 	);
 }
