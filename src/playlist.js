@@ -19,7 +19,6 @@ export default function Playlist({ goToLogin, goToPlayer, jwtToken }) {
 	}
 
 	function onClickLog(e, id) {
-		console.log(id);
 		goToPlayer(id);
 	}
 
@@ -61,10 +60,6 @@ export default function Playlist({ goToLogin, goToPlayer, jwtToken }) {
 					&lt;- Go back to Login Page
 				</button>
 			</div>
-			{/* <OneMovieComponent mediaList />
-			<OneMovieComponent />
-			<OneMovieComponent />
-			<OneMovieComponent /> */}
 			<div className="getMediaList">
 				{dataIsLoaded && RenderMovieDetails(dataIsLoaded, mediaList)}
 			</div>

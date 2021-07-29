@@ -62,21 +62,25 @@ export function getMediaList(data, token) {
 		});
 }
 
-export function getPlayer(data, token) {
+export function getPlayer(id, jwtToken) {
 	// {"MediaId": 15,
 	// "StreamType": "TRIAL"}
+	let data = { MediaId: id, StreamType: "TRIAL" };
 
 	// body :  {}
-	fetch("https://thebetter.bsgroup.eu/Media/GetMediaPlayInfo", {
+	return fetch(BASE_URL + "Media/GetMediaPlayInfo", {
 		method: "POST",
 		headers: {
-			Authorization: "Bearer " + token,
+			Authorization: "Bearer " + jwtToken,
 			"Content-Type": "application/json",
 		},
-		body: data,
+		body: JSON.stringify(data),
 	})
 		.then((response) => {
-			return console.log(response);
+			return response.json().then((response) => {
+				console.log(response);
+				return response;
+			});
 		})
 		.catch((err) => {
 			console.error(err);

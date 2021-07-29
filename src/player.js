@@ -1,14 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Playlist from "./playlist";
+import { getPlayer } from "./api";
 
-function deb(id) {
-	console.log("this is id inside player \n\n" + id);
-}
+export default function Player({ goToLogin, goToPlaylist, videoId, jwtToken }) {
+	const [isDataLoaded, setIsDataLoaded] = useState(false);
+	const [playerData, setPlayerData] = useState([]);
 
-export default function Player({ goToLogin, goToPlaylist, videoId }) {
-	if (videoId === undefined) {
-		goToLogin();
-	}
+	useEffect((res) => {
+		if (jwtToken === "") {
+			goToLogin();
+		} else {
+			getPlayer(videoId, jwtToken).then((res) => {
+				setPlayerData(res);
+			});
+		}
+	}, []);
+
 	return (
 		<div>
 			<div className="buttonBack">
@@ -16,7 +23,7 @@ export default function Player({ goToLogin, goToPlaylist, videoId }) {
 					&lt;- Go Back to Playlist
 				</button>
 			</div>
-			{console.log(videoId)}
+			{JSON.stringify(playerData)}
 		</div>
 	);
 }

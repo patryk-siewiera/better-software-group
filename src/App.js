@@ -34,6 +34,7 @@ function App() {
 				/>
 			</Route>
 			<Route exact path="/player">
+				{/* TODO generate ID per page  /:id */}
 				<Player
 					jwtToken={jwtToken}
 					goToLogin={() => history.push("./")}
