@@ -46,15 +46,34 @@ export default function Playlist({ goToLogin, goToPlayer, jwtToken }) {
 		return <div>test</div>;
 	}
 
+	function secondsToHms(d) {
+		d = Number(d);
+		d = d / 1000;
+		let h = Math.floor(d / 3600);
+		let m = Math.floor((d % 3600) / 60);
+		let s = Math.floor((d % 3600) % 60);
+
+		let hDisplay = h > 0 ? h + (h === 1 ? " hour, " : " hours, ") : "";
+		let mDisplay = m > 0 ? m + (m === 1 ? " minute, " : " minutes, ") : "";
+		let sDisplay = s > 0 ? s + (s === 1 ? " second" : " seconds") : "";
+		return hDisplay + mDisplay + sDisplay;
+	}
+
 	function RenderMovieDetails(isLoaded) {
 		if (isLoaded) {
 			return Object.entries(mediaList.Entities).map((el) => {
+				// TODO <br /> should be removed
 				return (
 					<div
 						className="oneMovie"
 						onClick={(e) => onClickLog(e, el[1].Id)}
 					>
 						{el[1].Title}
+						<br />
+						{el[1].MediaTypeDisplayName}
+						<br />
+						{secondsToHms(el[1].Duration)}
+						<br />
 						{returnImage(el[1])}
 					</div>
 				);
