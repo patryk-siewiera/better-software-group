@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Playlist from "./playlist";
 import { getPlayer } from "./api";
 import "./player.css";
+import ReactPlayer from "react-player";
 
 export default function Player({ goToLogin, goToPlaylist, videoId, jwtToken }) {
 	const [isDataLoaded, setIsDataLoaded] = useState(false);
@@ -21,7 +22,17 @@ export default function Player({ goToLogin, goToPlaylist, videoId, jwtToken }) {
 		if (playerData.ContentUrl === undefined) {
 			return <div className="contentUrl">Video not available</div>;
 		} else {
-			return <div className="contentUrl">{playerData.ContentUrl}</div>;
+			return (
+				<div className="contentUrl">
+					<ReactPlayer
+						style={{ margin: "auto" }}
+						url={playerData.ContentUrl}
+						width="70%"
+						height="70%"
+						controls={true}
+					/>
+				</div>
+			);
 		}
 	}
 
