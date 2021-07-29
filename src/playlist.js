@@ -10,8 +10,15 @@ export default function Playlist({ goToLogin, goToPlayer, jwtToken }) {
 
 	// TODO input user, media list id
 	const [mediaListId, setMediaListId] = useState(2);
+	const [pageNumber, setPageNumber] = useState(1);
+	// const [mediaListId, setMediaListId] = useState(2);
 
-	const bodyMedia = { MediaListId: mediaListId, PageNumber: 1, PageSize: 15 };
+	const bodyMedia = {
+		MediaListId: mediaListId,
+		PageNumber: pageNumber,
+		PageSize: 15,
+		IncludeImages: true,
+	};
 
 	function getMedia(bodyMedia, jwtToken) {
 		const dataMedia = getMediaList(bodyMedia, jwtToken);
@@ -20,6 +27,23 @@ export default function Playlist({ goToLogin, goToPlayer, jwtToken }) {
 
 	function onClickLog(e, id) {
 		goToPlayer(id);
+	}
+
+	// TODO finish implementing miniature picture
+	function returnImage(element) {
+		for (let index = 0; index < element.Images.length; index++) {
+			if (element.Images[index].ImageTypeCode === "FRAME") {
+				return (
+					<img
+						src={element.Images[index].Url}
+						alt="miniatureImage"
+						className="miniatureImage"
+					/>
+				);
+			}
+		}
+		console.log(element.Images.length);
+		return <div>test</div>;
 	}
 
 	function RenderMovieDetails(isLoaded) {
@@ -31,8 +55,7 @@ export default function Playlist({ goToLogin, goToPlayer, jwtToken }) {
 						onClick={(e) => onClickLog(e, el[1].Id)}
 					>
 						{el[1].Title}
-						<br />
-						{el[1].Id}
+						{returnImage(el[1])}
 					</div>
 				);
 			});

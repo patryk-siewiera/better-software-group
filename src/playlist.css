@@ -26,3 +26,7 @@
 	font-weight: bold;
 	cursor: pointer;
 }
+
+.miniatureImage {
+	width: 30%;
+}
