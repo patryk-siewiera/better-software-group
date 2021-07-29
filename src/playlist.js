@@ -9,7 +9,7 @@ export default function Playlist({ goToLogin, goToPlayer, jwtToken }) {
 	const [dataIsLoaded, setDataIsLoaded] = useState(false);
 
 	// TODO input user, media list id
-	const [mediaListId, setMediaListId] = useState(3);
+	const [mediaListId, setMediaListId] = useState(4);
 
 	const bodyMedia = { MediaListId: mediaListId, PageNumber: 1, PageSize: 15 };
 

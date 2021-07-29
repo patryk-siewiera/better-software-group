@@ -1,0 +1,24 @@
+.titleVideo {
+	padding: 40px;
+	font-size: 4rem;
+	margin: auto;
+	text-align: center;
+}
+
+.descriptionVideo {
+	padding: 30px;
+	text-align: center;
+	max-width: 600px;
+	margin: auto;
+}
+
+.mediaTypeDisplayNameVideo {
+	text-align: center;
+	color: rgb(177, 0, 0);
+	font-weight: bold;
+}
+
+.contentUrl {
+	color: blue;
+	text-align: center;
+}
