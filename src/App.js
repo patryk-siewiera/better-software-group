@@ -12,6 +12,7 @@ import Playlist from "./playlist";
 function App() {
 	const history = useHistory();
 	const [jwtToken, setJwtToken] = useState("");
+	const [videoId, setVideoId] = useState(undefined);
 	return (
 		<Switch>
 			<Route exact path="/">
@@ -24,12 +25,21 @@ function App() {
 			</Route>
 			<Route exact path="/playlist">
 				<Playlist
-					goBack={() => history.push("./")}
+					goToLogin={() => history.push("./")}
+					goToPlayer={(videoId) => {
+						setVideoId(videoId);
+						history.push("./player");
+					}}
 					jwtToken={jwtToken}
 				/>
 			</Route>
 			<Route exact path="/player">
-				<Player jwtToken={jwtToken} />
+				<Player
+					jwtToken={jwtToken}
+					goToLogin={() => history.push("./")}
+					goToPlaylist={() => history.push("./playlist")}
+					videoId={videoId}
+				/>
 			</Route>
 		</Switch>
 	);

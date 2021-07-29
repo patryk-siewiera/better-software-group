@@ -4,7 +4,7 @@ import "./playlist.css";
 import { getMediaList } from "./api";
 import { OneMovieComponent } from "./oneMovieComponent";
 
-export default function Playlist({ goBack, jwtToken }) {
+export default function Playlist({ goToLogin, goToPlayer, jwtToken }) {
 	const [mediaList, setMediaList] = useState("Loading Media List...");
 	const [dataIsLoaded, setDataIsLoaded] = useState(false);
 
@@ -20,6 +20,7 @@ export default function Playlist({ goBack, jwtToken }) {
 
 	function onClickLog(e, id) {
 		console.log(id);
+		goToPlayer(id);
 	}
 
 	function RenderMovieDetails(isLoaded) {
@@ -44,7 +45,7 @@ export default function Playlist({ goBack, jwtToken }) {
 	useEffect(() => {
 		if (jwtToken === "") {
 			setDataIsLoaded(false);
-			goBack();
+			goToLogin();
 		} else {
 			getMedia(bodyMedia, jwtToken).then((res) => {
 				setMediaList(res);
@@ -56,8 +57,8 @@ export default function Playlist({ goBack, jwtToken }) {
 	return (
 		<div>
 			<div className="buttonBack">
-				<button onClick={goBack} className="buttonGoBack">
-					Go back
+				<button onClick={goToLogin} className="buttongoToLogin">
+					&lt;- Go back to Login Page
 				</button>
 			</div>
 			{/* <OneMovieComponent mediaList />
