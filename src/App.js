@@ -1,12 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
-	BrowserRouter as Router,
-	Switch,
-	Route,
-	useHistory,
+	Route, Switch, useHistory
 } from "react-router-dom";
-import Player from "./player";
 import Login from "./login";
+import Player from "./player";
 import Playlist from "./playlist";
 
 function App() {
@@ -14,13 +11,15 @@ function App() {
 	const [jwtToken, setJwtToken] = useState("");
 	const [videoId, setVideoId] = useState(undefined);
 	const [pageNumber, setPageNumber] = useState(1);
+	const [appMediaListIdHandler, setAppMediaListIdHandler] = useState(2);
 
 	return (
 		<Switch>
 			<Route exact path="/">
 				<Login
-					onLogin={(token) => {
+					onLogin={(token, mediaListIdHandler) => {
 						setJwtToken(token);
+						setAppMediaListIdHandler(mediaListIdHandler);
 						history.push("/playlist");
 					}}
 				/>
@@ -37,6 +36,7 @@ function App() {
 					}}
 					jwtToken={jwtToken}
 					pageNumberHandler={pageNumber}
+					mediaListIdPlaylist={appMediaListIdHandler}
 				/>
 			</Route>
 			<Route exact path="/player">

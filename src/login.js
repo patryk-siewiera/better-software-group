@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { getLoginTokenAnonymous } from "./api";
 import "./login.css";
 
-export default function Login({ token, setJwtToken, onLogin, onFail }) {
-	const [mediaListIdHandler, setMediaListIdHandler] = useState(3);
+export default function Login({ onLogin }) {
+	const [mediaListIdHandler, setMediaListIdHandler] = useState(0);
 
 	function getAndStoreToken() {
-		return getLoginTokenAnonymous().then((token) => onLogin(token));
+		return getLoginTokenAnonymous().then((token) =>
+			onLogin(token, parseInt(mediaListIdHandler))
+		);
 	}
 
 	function handleLogin(ev) {
@@ -25,12 +27,12 @@ export default function Login({ token, setJwtToken, onLogin, onFail }) {
 						type="number"
 						className="inputText"
 						onChange={(e) => setMediaListIdHandler(e.target.value)}
-						maxLength="2"
+						required
 					/>
 					<div className="smallerText">put value between 2-100</div>
 				</div>
 				<button type="submit" className="buttonSubmit">
-					Login
+					Get Movies
 				</button>
 			</form>
 			<div className="bottomText">Better Software Group</div>

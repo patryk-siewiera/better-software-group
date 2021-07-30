@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router";
-import "./playlist.css";
+import React, { useEffect, useState } from "react";
 import { getMediaList } from "./api";
-import { OneMovieComponent } from "./oneMovieComponent";
+import "./playlist.css";
 
 export default function Playlist({
 	goToLogin,
@@ -10,13 +8,11 @@ export default function Playlist({
 	jwtToken,
 	pageNumberHandler,
 	goToPage,
+	mediaListIdPlaylist,
 }) {
 	const [mediaList, setMediaList] = useState("Loading Media List...");
 	const [dataIsLoaded, setDataIsLoaded] = useState(false);
 	const [totalCountMovies, setTotalCountMovies] = useState(1);
-
-	// TODO input user, media list id
-	const [mediaListId, setMediaListId] = useState(3);
 
 	useEffect(() => {
 		if (jwtToken === "") {
@@ -37,7 +33,7 @@ export default function Playlist({
 	}, [jwtToken]);
 
 	const bodyMedia = {
-		MediaListId: mediaListId,
+		MediaListId: mediaListIdPlaylist,
 		PageNumber: pageNumberHandler,
 		PageSize: 15,
 		IncludeImages: true,

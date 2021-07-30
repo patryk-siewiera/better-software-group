@@ -1,8 +1,7 @@
-import React, { useState, useEffect, Suspense } from "react";
-import Playlist from "./playlist";
+import React, { Suspense, useEffect, useState } from "react";
+import ReactPlayer from "react-player";
 import { getPlayer } from "./api";
 import "./player.css";
-import ReactPlayer from "react-player";
 
 export default function Player({ goToLogin, goToPlaylist, videoId, jwtToken }) {
 	const [isDataLoaded, setIsDataLoaded] = useState(false);

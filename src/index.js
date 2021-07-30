@@ -1,14 +1,9 @@
-import React, { useState, useEffect, lazy } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
-import Player from "./player";
 import {
-	BrowserRouter as Router,
-	Switch,
-	Route,
-	Link,
-	useHistory,
+    BrowserRouter as Router
 } from "react-router-dom";
+import "./index.css";
 
 const App = React.lazy(() => {
 	return import("./App").then(
