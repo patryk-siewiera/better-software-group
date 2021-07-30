@@ -4,14 +4,19 @@ import "./playlist.css";
 import { getMediaList } from "./api";
 import { OneMovieComponent } from "./oneMovieComponent";
 
-export default function Playlist({ goToLogin, goToPlayer, jwtToken }) {
+export default function Playlist({
+	goToLogin,
+	goToPlayer,
+	jwtToken,
+	pageNumberHandler,
+	goToPage,
+}) {
 	const [mediaList, setMediaList] = useState("Loading Media List...");
 	const [dataIsLoaded, setDataIsLoaded] = useState(false);
 	const [totalCountMovies, setTotalCountMovies] = useState(1);
 
 	// TODO input user, media list id
 	const [mediaListId, setMediaListId] = useState(3);
-	const [pageNumber, setPageNumber] = useState(0);
 
 	useEffect(() => {
 		if (jwtToken === "") {
@@ -28,7 +33,7 @@ export default function Playlist({ goToLogin, goToPlayer, jwtToken }) {
 
 	const bodyMedia = {
 		MediaListId: mediaListId,
-		PageNumber: pageNumber,
+		PageNumber: pageNumberHandler,
 		PageSize: 15,
 		IncludeImages: true,
 	};
@@ -104,10 +109,7 @@ export default function Playlist({ goToLogin, goToPlayer, jwtToken }) {
 		const pagesCount = Math.floor(totalCountMovies / itemsPerPage) + 1;
 		const arr = [...Array(pagesCount).keys()].map((i) => i + 1);
 		return arr.map((e) => (
-			<button
-				className="paginationButtons"
-				onClick={() => console.log(e)}
-			>
+			<button className="paginationButtons" onClick={() => goToPage(e)}>
 				{e}
 			</button>
 		));

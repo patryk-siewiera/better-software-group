@@ -13,6 +13,8 @@ function App() {
 	const history = useHistory();
 	const [jwtToken, setJwtToken] = useState("");
 	const [videoId, setVideoId] = useState(undefined);
+	const [pageNumber, setPageNumber] = useState(1);
+
 	return (
 		<Switch>
 			<Route exact path="/">
@@ -30,7 +32,11 @@ function App() {
 						setVideoId(videoId);
 						history.push("./player");
 					}}
+					goToPage={(pageId) => {
+						setPageNumber(pageId);
+					}}
 					jwtToken={jwtToken}
+					pageNumberHandler={pageNumber}
 				/>
 			</Route>
 			<Route exact path="/player">
@@ -39,7 +45,7 @@ function App() {
 					jwtToken={jwtToken}
 					goToLogin={() => history.push("./")}
 					goToPlaylist={() => history.push("./playlist")}
-					videoId={videoId}
+					videoId={pageNumber}
 				/>
 			</Route>
 		</Switch>
