@@ -18,22 +18,13 @@ export default function Login({ token, setJwtToken, onLogin }) {
 			<div className="topText">React platform – TASK 1</div>
 			<form action="" onSubmit={handleLogin}>
 				<div className="groupInput">
-					<div className="titleInput">Login</div>
-					<input type="text" required className="inputText" />
-				</div>
-				<div className="groupInput">
-					<div className="titleInput">Password</div>
-					<input type="password" required className="inputText" />
+					<div className="titleInput">MediaListId</div>
+					<input type="number" className="inputText" />
+					<div className="smallerText">put value between 1-100</div>
 				</div>
 				<button type="submit" className="buttonSubmit">
 					Login
 				</button>
-			</form>
-			<form action="" onSubmit={handleLogin}>
-				<button type="submit" className="buttonSubmit">
-					Login anonymously
-				</button>
-				{/* write here some generated accounts login data */}
 			</form>
 			<div className="bottomText">Better Software Group</div>
 		</div>

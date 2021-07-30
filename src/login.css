@@ -43,3 +43,9 @@
 .titleInput {
 	margin: 10px 0px;
 }
+
+.smallerText {
+	font-size: small;
+	color: grey;
+	margin-top: 10px;
+}
