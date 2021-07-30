@@ -36,6 +36,8 @@ export default function Login({ onLogin }) {
 				</button>
 			</form>
 			<div className="bottomText">Better Software Group</div>
+			{/* Im not able to register new user, or even login that's why there
+			isn't login option here */}
 		</div>
 	);
 }

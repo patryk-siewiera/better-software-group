@@ -6,7 +6,6 @@ import "./player.css";
 export default function Player({ goToLogin, goToPlaylist, videoId, jwtToken }) {
 	const [isDataLoaded, setIsDataLoaded] = useState(false);
 	const [playerData, setPlayerData] = useState([]);
-	const playerWidthHeight = "30rem";
 
 	useEffect(
 		(res) => {
@@ -41,6 +40,8 @@ export default function Player({ goToLogin, goToPlaylist, videoId, jwtToken }) {
 			);
 		}
 	}
+
+	console.log(videoId);
 
 	return (
 		<div>

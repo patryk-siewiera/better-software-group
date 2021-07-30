@@ -1,7 +1,5 @@
 import { useState } from "react";
-import {
-	Route, Switch, useHistory
-} from "react-router-dom";
+import { Route, Switch, useHistory } from "react-router-dom";
 import Login from "./login";
 import Player from "./player";
 import Playlist from "./playlist";
@@ -45,7 +43,7 @@ function App() {
 					jwtToken={jwtToken}
 					goToLogin={() => history.push("./")}
 					goToPlaylist={() => history.push("./playlist")}
-					videoId={pageNumber}
+					videoId={videoId}
 				/>
 			</Route>
 		</Switch>
