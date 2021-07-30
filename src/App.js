@@ -1,18 +1,11 @@
 import { useState } from "react";
-import {
-	Route,
-	Switch,
-	useHistory,
-	useLocation,
-	Redirect,
-} from "react-router-dom";
+import { Route, Switch, useHistory, Redirect } from "react-router-dom";
 import Login from "./login";
 import Player from "./player";
 import Playlist from "./playlist";
 
 function App() {
 	const history = useHistory();
-	let location = useLocation();
 	const [jwtToken, setJwtToken] = useState("");
 	const [videoId, setVideoId] = useState(undefined);
 	const [pageNumber, setPageNumber] = useState(1);
@@ -27,7 +20,7 @@ function App() {
 						setAppMediaListIdHandler(mediaListIdHandler);
 						history.push(
 							"/playlist/MediaListId=" +
-								appMediaListIdHandler +
+								mediaListIdHandler +
 								"/page=" +
 								pageNumber
 						);
