@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Route, Switch, useHistory, Redirect } from "react-router-dom";
+import { Redirect, Route, Switch, useHistory } from "react-router-dom";
 import Login from "./login";
 import Player from "./player";
 import Playlist from "./playlist";
@@ -41,7 +41,12 @@ function App() {
 					}}
 					goToPage={(pageId) => {
 						setPageNumber(pageId);
-						history.push("./playlist");
+						history.push(
+							"/playlist/MediaListId=" +
+								appMediaListIdHandler +
+								"/page=" +
+								pageId
+						);
 					}}
 					jwtToken={jwtToken}
 					pageNumberHandler={pageNumber}

@@ -110,7 +110,10 @@ export default function Playlist({
 		const pagesCount = Math.floor(totalCountMovies / itemsPerPage) + 1;
 		const arr = [...Array(pagesCount).keys()].map((i) => i + 1);
 		return arr.map((e) => (
-			<button className="paginationButtons" onClick={() => goToPage(e)}>
+			<button
+				className="paginationButtons"
+				onClick={() => alert("pagination will be implemented soon")}
+			>
 				{e}
 			</button>
 		));
