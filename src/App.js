@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { Route, Switch, useHistory, useLocation } from "react-router-dom";
+import {
+	Route,
+	Switch,
+	useHistory,
+	useLocation,
+	Redirect,
+} from "react-router-dom";
 import Login from "./login";
 import Player from "./player";
 import Playlist from "./playlist";
@@ -68,6 +74,7 @@ function App() {
 					videoId={videoId}
 				/>
 			</Route>
+			<Route render={() => <Redirect to="/" />} />
 		</Switch>
 	);
 }
