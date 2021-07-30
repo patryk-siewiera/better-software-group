@@ -41,8 +41,6 @@ export default function Player({ goToLogin, goToPlaylist, videoId, jwtToken }) {
 		}
 	}
 
-	console.log(videoId);
-
 	return (
 		<div>
 			<Suspense fallback={<div>loading...</div>}>
