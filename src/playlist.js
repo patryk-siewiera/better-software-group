@@ -7,10 +7,24 @@ import { OneMovieComponent } from "./oneMovieComponent";
 export default function Playlist({ goToLogin, goToPlayer, jwtToken }) {
 	const [mediaList, setMediaList] = useState("Loading Media List...");
 	const [dataIsLoaded, setDataIsLoaded] = useState(false);
+	const [totalCountMovies, setTotalCountMovies] = useState(1);
 
 	// TODO input user, media list id
-	const [mediaListId, setMediaListId] = useState(2);
-	const [pageNumber, setPageNumber] = useState(1);
+	const [mediaListId, setMediaListId] = useState(3);
+	const [pageNumber, setPageNumber] = useState(0);
+
+	useEffect(() => {
+		if (jwtToken === "") {
+			setDataIsLoaded(false);
+			goToLogin();
+		} else {
+			getMedia(bodyMedia, jwtToken).then((res) => {
+				setMediaList(res);
+				setTotalCountMovies(res.TotalCount);
+				setDataIsLoaded(true);
+			});
+		}
+	}, [jwtToken]);
 
 	const bodyMedia = {
 		MediaListId: mediaListId,
@@ -28,7 +42,6 @@ export default function Playlist({ goToLogin, goToPlayer, jwtToken }) {
 		goToPlayer(id);
 	}
 
-	// TODO finish implementing miniature picture
 	function returnImage(element) {
 		for (let index = 0; index < element.Images.length; index++) {
 			if (element.Images[index].ImageTypeCode === "FRAME") {
@@ -43,8 +56,7 @@ export default function Playlist({ goToLogin, goToPlayer, jwtToken }) {
 				);
 			}
 		}
-		console.log(element.Images.length);
-		return <div>test</div>;
+		return <div className="textWithout">without image</div>;
 	}
 
 	function secondsToHms(d) {
@@ -64,7 +76,6 @@ export default function Playlist({ goToLogin, goToPlayer, jwtToken }) {
 	function RenderMovieDetails(isLoaded) {
 		if (isLoaded) {
 			return Object.entries(mediaList.Entities).map((el) => {
-				// TODO <br /> should be removed
 				return (
 					<div
 						className="oneMovie"
@@ -84,21 +95,23 @@ export default function Playlist({ goToLogin, goToPlayer, jwtToken }) {
 				);
 			});
 		} else {
-			return 0;
+			return <div>loading</div>;
 		}
 	}
 
-	useEffect(() => {
-		if (jwtToken === "") {
-			setDataIsLoaded(false);
-			goToLogin();
-		} else {
-			getMedia(bodyMedia, jwtToken).then((res) => {
-				setMediaList(res);
-				setDataIsLoaded(true);
-			});
-		}
-	}, [jwtToken]);
+	function pagination() {
+		const itemsPerPage = 15;
+		const pagesCount = Math.floor(totalCountMovies / itemsPerPage) + 1;
+		const arr = [...Array(pagesCount).keys()].map((i) => i + 1);
+		return arr.map((e) => (
+			<button
+				className="paginationButtons"
+				onClick={() => console.log(e)}
+			>
+				{e}
+			</button>
+		));
+	}
 
 	return (
 		<div>
@@ -107,6 +120,7 @@ export default function Playlist({ goToLogin, goToPlayer, jwtToken }) {
 					&lt;- Go back to Login Page
 				</button>
 			</div>
+			<div className="totalPages">{pagination()}</div>
 			<div className="getMediaList">
 				{dataIsLoaded && RenderMovieDetails(dataIsLoaded, mediaList)}
 			</div>

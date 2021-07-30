@@ -7,6 +7,7 @@ import ReactPlayer from "react-player";
 export default function Player({ goToLogin, goToPlaylist, videoId, jwtToken }) {
 	const [isDataLoaded, setIsDataLoaded] = useState(false);
 	const [playerData, setPlayerData] = useState([]);
+	const playerWidthHeight = "30rem";
 
 	useEffect(
 		(res) => {
@@ -28,11 +29,12 @@ export default function Player({ goToLogin, goToPlaylist, videoId, jwtToken }) {
 		} else {
 			return (
 				<div className="contentUrl">
+					{/* width and height is 16:9 ratio */}
 					<ReactPlayer
 						style={{ margin: "auto" }}
 						url={playerData.ContentUrl}
-						width="70%"
-						height="70%"
+						width="64rem"
+						height="36rem"
 						controls={true}
 						playing={true}
 					/>

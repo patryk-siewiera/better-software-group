@@ -10,7 +10,7 @@
 
 .getMediaList {
 	margin: auto;
-	max-width: 48rem;
+	max-width: 46rem;
 }
 
 .oneMovie {
@@ -19,6 +19,7 @@
 	border-style: solid;
 	padding: 30px;
 	margin: 20px;
+	min-height: 12rem;
 	border-radius: 30px;
 	display: grid;
 	grid-template-columns: 50% 50%;
@@ -39,6 +40,7 @@
 .miniatureImage {
 	display: inline-block;
 	width: 100%;
+	border-radius: 8px;
 }
 
 .detailsTitle {
@@ -53,4 +55,26 @@
 .detailsDuration {
 	color: grey;
 	padding-top: 10px;
+}
+
+.textWithout {
+	text-align: center;
+	margin: 10px;
+	font-size: small;
+	font-style: italic;
+}
+
+.totalPages {
+	text-align: center;
+	border-style: solid;
+	max-width: 30rem;
+	margin: auto;
+	max-height: 10rem;
+	padding: 10px;
+}
+
+.paginationButtons {
+	width: 50px;
+	height: 50px;
+	margin: 0px 20px;
 }
