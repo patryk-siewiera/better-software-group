@@ -11,7 +11,6 @@ export default function Playlist({ goToLogin, goToPlayer, jwtToken }) {
 	// TODO input user, media list id
 	const [mediaListId, setMediaListId] = useState(2);
 	const [pageNumber, setPageNumber] = useState(1);
-	// const [mediaListId, setMediaListId] = useState(2);
 
 	const bodyMedia = {
 		MediaListId: mediaListId,
@@ -34,11 +33,13 @@ export default function Playlist({ goToLogin, goToPlayer, jwtToken }) {
 		for (let index = 0; index < element.Images.length; index++) {
 			if (element.Images[index].ImageTypeCode === "FRAME") {
 				return (
-					<img
-						src={element.Images[index].Url}
-						alt="miniatureImage"
-						className="miniatureImage"
-					/>
+					<div className="divImage">
+						<img
+							src={element.Images[index].Url}
+							alt="miniatureImage"
+							className="miniatureImage"
+						/>
+					</div>
 				);
 			}
 		}
@@ -48,6 +49,7 @@ export default function Playlist({ goToLogin, goToPlayer, jwtToken }) {
 
 	function secondsToHms(d) {
 		d = Number(d);
+		// I divided here by 1000, because typical movie lenght is between 50 - 300 minutes, just guessing
 		d = d / 1000;
 		let h = Math.floor(d / 3600);
 		let m = Math.floor((d % 3600) / 60);
@@ -68,12 +70,15 @@ export default function Playlist({ goToLogin, goToPlayer, jwtToken }) {
 						className="oneMovie"
 						onClick={(e) => onClickLog(e, el[1].Id)}
 					>
-						{el[1].Title}
-						<br />
-						{el[1].MediaTypeDisplayName}
-						<br />
-						{secondsToHms(el[1].Duration)}
-						<br />
+						<div>
+							<div className="detailsTitle">{el[1].Title}</div>
+							<div className="detailsDuration">
+								{secondsToHms(el[1].Duration)}
+							</div>
+							<div className="detailsMediaType">
+								{el[1].MediaTypeDisplayName}
+							</div>
+						</div>
 						{returnImage(el[1])}
 					</div>
 				);
