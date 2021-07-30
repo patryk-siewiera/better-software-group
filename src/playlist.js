@@ -123,7 +123,7 @@ export default function Playlist({
 					&lt;- Go back to Login Page
 				</button>
 			</div>
-			<div className="totalPages">{pagination()}</div>
+			<div className="totalPages">pages: {pagination()}</div>
 			<div className="getMediaList">
 				{dataIsLoaded && RenderMovieDetails(dataIsLoaded, mediaList)}
 			</div>
