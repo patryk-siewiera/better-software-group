@@ -24,9 +24,14 @@ export default function Playlist({
 			goToLogin();
 		} else {
 			getMedia(bodyMedia, jwtToken).then((res) => {
-				setMediaList(res);
-				setTotalCountMovies(res.TotalCount);
-				setDataIsLoaded(true);
+				if (res === undefined) {
+					alert("Wrong Media List Id, please select another");
+					goToLogin();
+				} else {
+					setMediaList(res);
+					setTotalCountMovies(res.TotalCount);
+					setDataIsLoaded(true);
+				}
 			});
 		}
 	}, [jwtToken]);

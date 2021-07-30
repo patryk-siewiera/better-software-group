@@ -2,7 +2,7 @@ import React from "react";
 import { getLoginTokenAnonymous } from "./api";
 import "./login.css";
 
-export default function Login({ token, setJwtToken, onLogin }) {
+export default function Login({ token, setJwtToken, onLogin, onFail }) {
 	function getAndStoreToken() {
 		return getLoginTokenAnonymous().then((token) => onLogin(token));
 	}
@@ -20,7 +20,7 @@ export default function Login({ token, setJwtToken, onLogin }) {
 				<div className="groupInput">
 					<div className="titleInput">MediaListId</div>
 					<input type="number" className="inputText" />
-					<div className="smallerText">put value between 1-100</div>
+					<div className="smallerText">put value between 2-100</div>
 				</div>
 				<button type="submit" className="buttonSubmit">
 					Login
